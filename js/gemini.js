@@ -14,9 +14,11 @@ export async function askGemini(groceryArray){
 }
 
 async function GeminiAPICall(prompt) {
-    //Amazing security, I know. Laziness is the crux of all security.
-    const API_KEY = "AQ.Ab8RN6KUsChAnZ-I-C93Pxx0IQmypxEB4m_nui9YZ2gJEmb6nQ";
-    try {
+
+    const API_KEY = import.meta.env.VITE_GEMINI_KEY;
+    console.log(import.meta.env.VITE_GEMINI_KEY)
+    //Amazing security, I know. Laziness is the crux of all security.    try {
+    try{
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
             {
@@ -36,6 +38,7 @@ async function GeminiAPICall(prompt) {
         return data.candidates[0].content.parts[0].text
     }
     catch (error) {
+        console.log(error)
         return "An error occured communicating with Google Gemini.";
     }
 }
