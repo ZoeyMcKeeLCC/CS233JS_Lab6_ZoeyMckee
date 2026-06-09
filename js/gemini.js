@@ -8,16 +8,16 @@ export async function askGemini(groceryArray){
     }
     let question = `You're going to design a meal out of the given foods: ${buffer}
     Format your response so it will be displayed neatly in a text box in an HTML web page.`;
-
-    return await GeminiAPICall(question);
+    
+    try{return await GeminiAPICall(question);}
+    catch{return "Something went wrong."}
 
 }
 
 async function GeminiAPICall(prompt) {
-
+ //Amazing security, I know. Laziness is the crux of all security.
     const API_KEY = import.meta.env.VITE_GEMINI_KEY;
-    console.log(import.meta.env.VITE_GEMINI_KEY)
-    //Amazing security, I know. Laziness is the crux of all security.    try {
+   
     try{
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
@@ -38,7 +38,6 @@ async function GeminiAPICall(prompt) {
         return data.candidates[0].content.parts[0].text
     }
     catch (error) {
-        console.log(error)
         return "An error occured communicating with Google Gemini.";
     }
 }
