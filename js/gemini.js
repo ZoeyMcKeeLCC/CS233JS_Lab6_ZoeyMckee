@@ -15,7 +15,6 @@ export async function askGemini(groceryArray){
 
 async function GeminiAPICall(prompt) {
     //Amazing security, I know. Laziness is the crux of all security.
-    const API_KEY = "ex"
     try {
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
