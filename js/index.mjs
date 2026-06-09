@@ -11,7 +11,7 @@ AI Policy: No generate tools were used in the creation of this project
     All classes and initialization code are in this single file.
 */
 
-import {html, render} from 'lit-html';
+
 
 import { GroceryModel } from './model.mjs';
 import { GroceryController } from './controller.mjs';
