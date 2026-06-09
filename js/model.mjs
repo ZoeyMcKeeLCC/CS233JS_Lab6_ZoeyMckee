@@ -18,8 +18,6 @@ export class GroceryModel {
     } catch (e) {
       // Provide starter entries if local storage is empty/corrupt.
       this.groceries = [];
-      this.addGrocery("Apple", 7);
-      this.addGrocery("Bananas", 7)
 
     }
     this.geminiButtonEventListener();
@@ -78,7 +76,7 @@ export class GroceryModel {
 
   async pullOpenFoodAPI(food){
     try{
-      let response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${food}&search_simple=1&action=process&json=1`);
+      let response = await fetch(`https://proxy.corsfix.com/?https://world.openfoodfacts.org/cgi/search.pl?search_terms=${food}&search_simple=1&action=process&json=1`);
       let data = await response.json();
       let nutrientInfo = await data.products[0].nutrient_levels
       return await nutrientInfo;
